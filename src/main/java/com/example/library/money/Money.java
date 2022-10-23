@@ -1,17 +1,16 @@
-package com.example.library.category;
+package com.example.library.money;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
-public class Category {
+public class Money {
     @Id
     @GeneratedValue(
             strategy = GenerationType.IDENTITY
     )
     private int id;
     @Column(nullable = false)
-    private String name;
+    private int expenses;
     @Column(nullable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private int revenue;
 }
