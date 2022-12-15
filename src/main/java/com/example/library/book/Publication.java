@@ -2,10 +2,8 @@ package com.example.library.book;
 
 import com.example.library.category.Category;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -32,4 +30,12 @@ public abstract class Publication {
     @JoinColumn(nullable = false, name="categoryId")
     private Category category;
 
+    public Publication(String title, String ISBN, String author, int price, LocalDateTime createdAt, Category category) {
+        this.title = title;
+        this.ISBN = ISBN;
+        this.author = author;
+        this.price = price;
+        this.createdAt = createdAt;
+        this.category = category;
+    }
 }
