@@ -1,45 +1,39 @@
 package com.example.library.book;
 
-import com.example.library.admin.Admin;
 import com.example.library.category.Category;
-import com.example.library.user.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-
-@Entity
-public class Book extends Publication {
+public class Book {
     @Id
+    @SequenceGenerator(
+            name = "book",
+            sequenceName = "book",
+            allocationSize = 1
+    )
     @GeneratedValue(
             strategy = GenerationType.IDENTITY
     )
-    private int id;
-    @Enumerated(EnumType.STRING)
-    private Status status = Status.READY;
-    @Enumerated(EnumType.STRING)
-    private State state = State.GOOD;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false, name="userId")
-    private User user;
-    @ManyToOne
-    @JoinColumn(nullable = false, name="assignedBy")
-    private Admin admin;
+    private Long id;
     @Column(nullable = false)
-    private LocalDateTime assignedAt = LocalDateTime.now();
+    private String title;
+    @Column(nullable = false)
+    private String description;
+    @Column(nullable = false)
+    private Long views = 0l;
+    private int rate;
+    @Column(nullable = false)
+    private int nbrOfRates = 0;
+    @Column(nullable = false)
+    private String url;
+    @Column(nullable = false)
+    private String coverUrl;
+    @Column(nullable = false)
+    private Boolean approved = false;
     @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
-
-    public Book() {
-    }
-
-    public Book(String title, String ISBN, String author, int price, Category category, Status status, State state, User user, Admin admin, LocalDateTime assignedAt, LocalDateTime createdAt) {
-        super(title, ISBN, author, price, category);
-        this.status = status;
-        this.state = state;
-        this.user = user;
-        this.admin = admin;
-        this.assignedAt = assignedAt;
-        this.createdAt = createdAt;
-    }
+    @ManyToOne
+    @JoinColumn(nullable = false, name="categoryId")
+    private Category category;
 }

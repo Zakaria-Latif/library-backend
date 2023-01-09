@@ -1,7 +1,8 @@
 package com.example.library.signup;
 
-import com.example.library.admin.Admin;
-import com.example.library.admin.AdminService;
+import com.example.library.user.Role;
+import com.example.library.user.User;
+import com.example.library.user.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class SignupService {
 
-    private final AdminService adminService;
+    private final UserService userService;
     private final EmailValidator emailValidator;
 
     public String signup(SignupRequest request) {
@@ -17,8 +18,8 @@ public class SignupService {
         if (!isValidEmail) {
             throw new IllegalStateException("email not valid");
         }
-        return adminService.signupAdmin(
-                new Admin(
+        return userService.signupUser(
+                new User(
                         request.getName(),
                         request.getUsername(),
                         request.getPassword()
