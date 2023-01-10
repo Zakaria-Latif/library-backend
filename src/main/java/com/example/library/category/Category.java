@@ -14,4 +14,14 @@ public class Category {
     private String name;
     @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    public Category(int id, String name, LocalDateTime createdAt) {
+        this.id = id;
+        this.name = name;
+        this.createdAt = createdAt;
+    }
+
+    public Category() {
+
+    }
 }

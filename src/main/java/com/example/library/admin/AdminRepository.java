@@ -10,4 +10,5 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public interface AdminRepository extends JpaRepository<Admin, Long> {
     Optional<Admin> findByUsername(String username);
+//    Entity<Admin> findByUsername(String username);
 }

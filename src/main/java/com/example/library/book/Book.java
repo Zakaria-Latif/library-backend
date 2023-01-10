@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 
 @Entity
-public class Book extends Publication {
+public class Book  extends  Publication{
     @Id
     @GeneratedValue(
             strategy = GenerationType.IDENTITY
@@ -29,6 +29,7 @@ public class Book extends Publication {
     private LocalDateTime assignedAt = LocalDateTime.now();
     @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
+
 
     public Book() {
     }
